@@ -7,7 +7,8 @@ import {
   Seeds2,
   Meat,
   Cheese,
-  Salad
+  Salad,
+  Tomato
 } from './StyledIngredient';
 
 const burgerIngredient = props => {
@@ -36,6 +37,10 @@ const burgerIngredient = props => {
 
     case 'salad':
       ingredient = <Salad />;
+      break;
+
+    case 'tomato':
+      ingredient = <Tomato />;
       break;
 
     default:

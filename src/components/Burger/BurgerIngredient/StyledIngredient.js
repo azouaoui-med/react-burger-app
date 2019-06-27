@@ -102,5 +102,11 @@ export const Salad = styled.div`
   background: linear-gradient(#228c1d, #91ce50);
   border-radius: 20px;
 `;
+export const Tomato = styled.div`
+  width: 80%;
+  height: 3%;
+  background: linear-gradient(#bf3813, #c45e38);
+  margin: 2% auto;
+`;
 
 //export default styledIngredient;

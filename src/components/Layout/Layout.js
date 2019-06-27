@@ -1,10 +1,12 @@
 import React from 'react';
 
+import Navbar from '../UI/Navbar/Navbar';
+
 const layout = props => {
   return (
     <React.Fragment>
-      <div>Toolbar, sidebar, backdrop</div>
-      <main>{props.children}</main>
+      <Navbar />
+      <main className='container pt-5 mt-3'>{props.children}</main>
     </React.Fragment>
   );
 };
