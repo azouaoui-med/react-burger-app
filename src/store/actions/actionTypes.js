@@ -1,2 +1,3 @@
 export const ADD_INGREDIENT = 'ADD_INGERDIENT';
 export const REMOVE_INGREDIENT = 'REMOVE_INGERDIENT';
+export const SET_ORDERS = 'SET_ORDERS';
