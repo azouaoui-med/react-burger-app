@@ -9,7 +9,8 @@ const INGREDIENT_PRICES = {
 
 const intialState = {
   ingredients: { salad: 0, tomato: 0, cheese: 0, meat: 0 },
-  totalPrice: 4
+  totalPrice: 4,
+  purchasing: false
 };
 
 const reducer = (state = intialState, action) => {
@@ -32,6 +33,17 @@ const reducer = (state = intialState, action) => {
           [action.ingredientName]: state.ingredients[action.ingredientName] - 1
         },
         totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
+      };
+    case actionTypes.SET_PURCHASING:
+      return {
+        ...state,
+        purchasing: action.purchasing
+      };
+    case actionTypes.INIT_BURGER:
+      return {
+        ...state,
+        ingredients: { salad: 0, tomato: 0, cheese: 0, meat: 0 },
+        totalPrice: 4
       };
 
     default:

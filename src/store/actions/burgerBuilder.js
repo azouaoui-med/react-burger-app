@@ -13,3 +13,9 @@ export const removeIngredient = name => {
     ingredientName: name
   };
 };
+
+export const initBurger = () => {
+  return {
+    type: actionTypes.INIT_BURGER
+  };
+};

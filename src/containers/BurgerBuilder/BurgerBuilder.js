@@ -6,37 +6,27 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import axios from '../../axios-orders';
 import * as actions from '../../store/actions/index';
 
 class BurgerBuilder extends Component {
   state = {
-    purchasable: false,
-    purchasing: false,
-    loading: false
+    purchasable: false
   };
 
   orderHandler = async () => {
-    this.setState({ loading: true });
     const order = {
       ingredients: this.props.ingredients,
       price: this.props.totalPrice
     };
-    try {
-      await axios.post('/orders.json', order);
-      this.setState({ loading: false, purchasing: false });
-    } catch (error) {
-      console.log(error);
-      this.setState({ loading: false, purchasing: false });
-    }
+    this.props.onPurchaseBurger(order);
   };
   purchaseHandler = () => {
-    this.setState({ purchasing: true });
+    this.props.onSetPurchasing(true);
   };
   cancelPurchaseHandler = e => {
     // if (e.target !== e.currentTarget) return;
     e.stopPropagation();
-    this.setState({ purchasing: false });
+    this.props.onSetPurchasing(false);
   };
   updatePurchaseState() {
     const sum = Object.keys(this.props.ingredients)
@@ -63,13 +53,13 @@ class BurgerBuilder extends Component {
         totalPrice={this.props.totalPrice}
       />
     );
-    if (this.state.loading) {
+    if (this.props.loading) {
       orderSummary = <Spinner />;
     }
     return (
       <React.Fragment>
         <Modal
-          show={this.state.purchasing}
+          show={this.props.purchasing}
           closeModal={this.cancelPurchaseHandler}
           order={this.orderHandler}
           title='Order Summary'
@@ -93,7 +83,9 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
   return {
     ingredients: state.burger.ingredients,
-    totalPrice: state.burger.totalPrice
+    totalPrice: state.burger.totalPrice,
+    purchasing: state.burger.purchasing,
+    loading: state.ord.loading
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -103,6 +95,12 @@ const mapDispatchToProps = dispatch => {
     },
     onRemoveIngredient: type => {
       dispatch(actions.removeIngredient(type));
+    },
+    onPurchaseBurger: orderData => {
+      dispatch(actions.purchaseOrder(orderData));
+    },
+    onSetPurchasing: status => {
+      dispatch(actions.setPurchasing(status));
     }
   };
 };
