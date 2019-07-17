@@ -11,11 +11,13 @@ const Navbar = props => {
 
   return (
     <nav className='navbar fixed-top navbar-expand-md navbar-dark bg-dark'>
-      <a className='navbar-brand' href='!#'>
-        Burger
-      </a>
-      <Toggler toggleNav={toggleNavHandler} />
-      <NavbarItems collapsed={toggleNav.collapsed} />
+      <div className='container'>
+        <a className='navbar-brand' href='!#'>
+          Burger
+        </a>
+        <Toggler toggleNav={toggleNavHandler} />
+        <NavbarItems collapsed={toggleNav.collapsed} />
+      </div>
     </nav>
   );
 };

@@ -8,7 +8,7 @@ const order = props => {
 
   const ingredientsOutput = ingredients.map(ig => {
     return (
-      <small key={ig.name} className='text-nowrap border p-1 mr-2 shadow-sm'>
+      <small key={ig.name} className='text-nowrap border p-1 mr-2 bg-white'>
         {ig.name} : <strong>{ig.amount}</strong>
       </small>
     );
